@@ -1,7 +1,11 @@
-const app = require('./app'); // Importa o app do arquivo app.js
+const express = require('express');
+const routes = require('./routes');
 
-const PORT = process.env.PORT || 3000;
+const app = express();
+app.use(express.json()); // Middleware para interpretar o corpo das solicitações como JSON
+app.use('/api', routes); // Associar as rotas ao caminho '/api'
 
-app.listen(PORT, () => {
-  console.log(`Servidor iniciado na porta ${PORT}`);
+const port = 3000;
+app.listen(port, () => {
+    console.log(`API rodando na porta ${port}.`);
 });

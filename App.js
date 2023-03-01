@@ -1,10 +1,14 @@
 import React from 'react';
 import Login from './views/Login';
+import LoseGame from './views/LoseGame';
+
+
+import SignUp from './views/SignUp';
 
 const app = () => {
   return (
     <>
-      <Login />
+      <Login/>
     </>
   )
 }

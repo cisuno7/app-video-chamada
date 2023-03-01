@@ -1,10 +1,24 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native';
+import axios from 'axios';
+
 
 const Login = () => {
 
     const [login, setLogin] = React.useState('');
     const [passwd, setPasswd] = React.useState('');
+    const handleLogin = () => {
+        axios.post('/auth', {
+          email: login,
+          password: passwd
+        }).then(response => {
+          console.log(response.data); // Exibe a mensagem de sucesso ou erro no console
+        }).catch(error => {
+          console.log(error); // Exibe o erro no console
+        });
+      };
+      
+    
     return (
     <View style={styles.container}>
         <View style={styles.FormLogin}>
@@ -32,7 +46,7 @@ const Login = () => {
             <Pressable style={styles.button} /* onPress={onPress} */>
                 <Text style={styles.textBtn}>Criar conta</Text>
             </Pressable>
-            <Pressable style={styles.button} /* onPress={onPress} */>
+            <Pressable style={styles.button} onPress={handleLogin} >
                 <Text style={styles.textBtn}>Entrar</Text>
             </Pressable>
             </View>
@@ -40,6 +54,12 @@ const Login = () => {
     </View>
     );
 };
+
+
+  
+
+
+
 
 const styles = StyleSheet.create({
     container: {

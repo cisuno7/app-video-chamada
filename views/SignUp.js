@@ -1,10 +1,26 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native';
+import axios from 'axios';
+
 
 const SignUp = () => {
-    const [login, setLogin] = React.useState('');
-    const [passwd, setPasswd] = React.useState('');
-
+    const [username, setLogin] = React.useState('');
+    const [password, setPasswd] = React.useState('');
+    const [email, setemail] = React.useState('');
+    
+    const handleSignUp = () => {
+        axios.post('http://localhost:3000/signup', {
+            username: username,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword
+        }).then(response => {
+            console.log(response.data); // ou exiba uma mensagem de sucesso
+        }).catch(error => {
+            console.error(error);
+        });
+    };
+    
     return ( 
     <View style={styles.container}>
         <View style={styles.FormLogin}>
@@ -23,8 +39,8 @@ const SignUp = () => {
                 <TextInput 
                     style={styles.input}
                     placeholder="example@example.com"
-                    onChangeText={newLogin => setLogin(newLogin)}
-                    defaultValue={login}
+                    onChangeText={newEmail => setemail(newEmail)}
+                    defaultValue={email}
                     />
             </View>
             <View style={styles.InputBox}>
@@ -34,7 +50,7 @@ const SignUp = () => {
                     secureTextEntry={true}
                     placeholder="********"
                     onChangeText={newPass => setPasswd(newPass)}
-                    defaultValue={passwd}
+                    defaultValue={Passwd}
                     />
             </View>
             <View style={styles.InputBox}>
@@ -48,10 +64,10 @@ const SignUp = () => {
                     />
             </View>
             <View style={styles.btnBox}>
-            <Pressable style={styles.buttonBack} /* onPress={onPress} */>
+            <Pressable style={styles.buttonBack} /* onPress={onPress}*/ >
                 <Text style={styles.textBtn}>Voltar</Text>
             </Pressable>
-            <Pressable style={styles.button} /* onPress={onPress} */>
+            <Pressable style={styles.button}  onPress={handleSignUp} >
                 <Text style={styles.textBtn}>Criar conta</Text>
             </Pressable>
             </View>
