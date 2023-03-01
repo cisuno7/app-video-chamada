@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './views/Login';
-import LoseGame from './views/LoseGame';
+import SignUp from './views/SignUp';
 
 
 
@@ -8,7 +8,7 @@ import LoseGame from './views/LoseGame';
 const AppContainer = () => {
   return (
     <>
-      <Login/>
+      <SignUp />
     </>
   )
 }

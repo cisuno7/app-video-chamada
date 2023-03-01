@@ -1,25 +1,49 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Pressable, Alert } from 'react-native';
 import axios from 'axios';
 
 
 const SignUp = () => {
     const [username, setLogin] = React.useState('');
-    const [password, setPasswd] = React.useState('');
-    const [email, setemail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [confirmPassword, setConfirmPassword] = React.useState('');
+    const [email, setEmail] = React.useState('');
     
     const handleSignUp = () => {
-        axios.post('http://localhost:3000/signup', {
+        const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const validSenha = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%*()_+^&}{:;?.])(?:([0-9a-zA-Z!@#$%;*(){}_+^&])(?!\1)){6,}$/;
+
+        if(!username || !email || !password || !confirmPassword ) {
+            Alert.alert('Preencha os campos','Todos os campos devem ser preenchidos.');
+            console.log('Todos os campos devem ser preenchidos.');
+        }
+        if(validEmail.test(email) === false) {
+            Alert.alert('Email','Formato do email incorreto.');
+            console.log('Formato do email incorreto');
+        }
+        if(validSenha.test(password) === false) {
+            Alert.alert('Senha','A senha deve possuir 8 caracteres, sendo 1 letra maiúscula, 1 minúscula e 1 caractere especial.');
+            console.log('A senha deve possuir no mínimo 8 caracteres, sendo 1 letra maiúscula e 1 minúscula.');
+        }
+        if(confirmPassword !== password) {
+            Alert.alert('Senha','As senhas devem ser iguais.');
+            console.log('senhas diferentes');
+        }
+        else {
+            axios.post('http://localhost:3000/signup', {
             username: username,
             email: email,
             password: password,
             confirmPassword: confirmPassword
-        }).then(response => {
-            console.log(response.data); // ou exiba uma mensagem de sucesso
-        }).catch(error => {
-            console.error(error);
-        });
+            }).then(response => {
+                console.log(response.data); // ou exiba uma mensagem de sucesso
+            }).catch(error => {
+                console.error(error);
+            });
+        }
+        
     };
+
     
     return ( 
     <View style={styles.container}>
@@ -31,7 +55,7 @@ const SignUp = () => {
                     style={styles.input}
                     placeholder="Ex: Gabriel Torres"
                     onChangeText={newLogin => setLogin(newLogin)}
-                    defaultValue={login}
+                    defaultValue={username}
                     />
             </View>
             <View style={styles.InputBox}>
@@ -39,7 +63,7 @@ const SignUp = () => {
                 <TextInput 
                     style={styles.input}
                     placeholder="example@example.com"
-                    onChangeText={newEmail => setemail(newEmail)}
+                    onChangeText={newEmail => setEmail(newEmail)}
                     defaultValue={email}
                     />
             </View>
@@ -49,8 +73,8 @@ const SignUp = () => {
                     style={styles.input}
                     secureTextEntry={true}
                     placeholder="********"
-                    onChangeText={newPass => setPasswd(newPass)}
-                    defaultValue={Passwd}
+                    onChangeText={newPass => setPassword(newPass)}
+                    defaultValue={password}
                     />
             </View>
             <View style={styles.InputBox}>
@@ -59,8 +83,8 @@ const SignUp = () => {
                     style={styles.input}
                     secureTextEntry={true}
                     placeholder="********"
-                    onChangeText={newPass => setPasswd(newPass)}
-                    defaultValue={passwd}
+                    onChangeText={newPassConfirm => setConfirmPassword(newPassConfirm)}
+                    defaultValue={confirmPassword}
                     />
             </View>
             <View style={styles.btnBox}>
