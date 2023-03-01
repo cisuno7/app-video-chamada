@@ -1,6 +1,17 @@
 import React from 'react';
 import Login from './views/Login';
-import axios from 'axios';
+
+const app = () => {
+  return (
+    <>
+      <Login />
+    </>
+  )
+}
+
+export default app; 
+
+/* import axios from 'axios';
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -56,4 +67,4 @@ app.post('/login', async (req, res) => {
   }
 });
 
-module.exports = app; // Exporta o app para o arquivo server.js
+module.exports = app; // Exporta o app para o arquivo server.js */
