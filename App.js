@@ -3,9 +3,9 @@ import Login from './views/Login';
 import LoseGame from './views/LoseGame';
 
 
-import SignUp from './views/SignUp';
 
-const app = () => {
+
+const AppContainer = () => {
   return (
     <>
       <Login/>
@@ -13,7 +13,7 @@ const app = () => {
   )
 }
 
-export default app; 
+export default AppContainer;
 
 /* import axios from 'axios';
 const express = require('express');

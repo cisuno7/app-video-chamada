@@ -1,6 +1,6 @@
 const express = require('express');
 const pool = require('./db');
-
+const AppContainer = require('./App');
 const router = express.Router();
 
 // Rota para listar todos os usuários
@@ -40,5 +40,5 @@ router.post('/auth', (req, res) => {
     });
 });
 
-
+router.use('/app', AppContainer);
 module.exports = router;
