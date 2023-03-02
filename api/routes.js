@@ -1,7 +1,7 @@
 const express = require('express');
-const pool = require('./db');
-const AppContainer = require('./App');
-const router = express.Router();
+const pool = require('../Model/db');
+const AppContainer = require('../App');
+const router = express();
 
 // Rota para listar todos os usuários
 router.get('/users', (req, res) => {

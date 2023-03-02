@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "dev": "nodemon ./Services/Server.js"
   },
   "dependencies": {
     "@react-native/assets-registry": "^0.72.0",
@@ -28,7 +29,8 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/node": "^18.14.2",
-    "expo-module-scripts": "^3.0.7"
+    "expo-module-scripts": "^3.0.7",
+    "nodemon": "^2.0.20"
   },
   "private": true
 }

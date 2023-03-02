@@ -1,9 +1,9 @@
 const express = require('express');
-const routes = require('./routes');
+const router = require('../api/routes');
 
 const app = express();
-app.use(express.json()); // Middleware para interpretar o corpo das solicitações como JSON
-app.use('/api', routes); // Associar as rotas ao caminho '/api'
+app.use(express.json()); 
+app.use(router)
 
 const port = 3000;
 app.listen(port, () => {
