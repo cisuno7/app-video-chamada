@@ -1,21 +1,39 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Pressable, Alert } from 'react-native';
 import axios from 'axios';
 
-
-const Login = () => {
+const Login = ({navigation}) => {
 
     const [login, setLogin] = React.useState('');
     const [passwd, setPasswd] = React.useState('');
-    const handleLogin = () => {
-        axios.post('/auth', {
-          email: login,
-          password: passwd
-        }).then(response => {
-          console.log(response.data); // Exibe a mensagem de sucesso ou erro no console
-        }).catch(error => {
-          console.log(error); // Exibe o erro no console
-        });
+
+    const handleLogin = ({navigation}) => {
+        const validLogin = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const validPass = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%*()_+^&}{:;?.])(?:([0-9a-zA-Z!@#$%;*(){}_+^&])(?!\1)){6,}$/;
+
+        if( !login || !passwd ) {
+            Alert.alert('Preencha os campos','Todos os campos devem ser preenchidos.');
+            console.log('Todos os campos devem ser preenchidos.');
+        }
+        if(validLogin.test(login) === false) {
+            Alert.alert('Email','Formato do email incorreto.');
+            console.log('Formato do email incorreto');
+        }
+        if(validPass.test(passwd) === false) {
+            Alert.alert('Senha','A senha deve possuir 8 caracteres, sendo 1 letra maiúscula, 1 minúscula e 1 caractere especial.');
+            console.log('A senha deve possuir no mínimo 8 caracteres, sendo 1 letra maiúscula e 1 minúscula.');
+        }
+        else {
+            axios.post('/auth', {
+                email: login,
+                password: passwd
+            }).then(response => {
+                console.log(response.data);
+                navigation.navigate('Home')
+            }).catch(error => {
+                console.log(error); 
+            });
+        }
       };
       
     
@@ -43,7 +61,7 @@ const Login = () => {
                     />
             </View>
             <View style={styles.btnBox}>
-            <Pressable style={styles.button} /* onPress={onPress} */>
+            <Pressable style={styles.button} onPress={() => navigation.navigate('SignUp')}>
                 <Text style={styles.textBtn}>Criar conta</Text>
             </Pressable>
             <Pressable style={styles.button} onPress={handleLogin} >
@@ -64,13 +82,12 @@ const Login = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: '#353535',
         alignItems: 'center',
         justifyContent: 'center',
     },
     FormLogin: {
         flexDirection: 'column',
-        backgroundColor: '#353535',
         paddingVertical: 30,
         paddingHorizontal: 20,
         borderRadius: 10,
@@ -85,7 +102,7 @@ const styles = StyleSheet.create({
     input: {
         width: '100%',
         height: 40,
-        borderColor: '#28CE2F',
+        borderColor: '#286ACE',
         color: '#ffffff',
         borderWidth: 3,
         padding: 10,
@@ -118,7 +135,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 10,
         width: 110,
-        backgroundColor: '#28CE2F',
+        backgroundColor: '#286ACE',
         elevation: 3,
     },
 });
