@@ -13,13 +13,21 @@ const AppContainer = () => {
     <NavigationContainer>
     <Stack.Navigator
       screenOptions={{
-        headerShown: false
+        title: 'bipix worth',
+        headerStyle: {
+          backgroundColor: '#286ACE',
+          height: 25,
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontSize: 14,
+          fontWeight: 'bold',
+        },
       }}>
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen
-        name="Login"
-        component={Login}
-      />
       <Stack.Screen name="SignUp" component={SignUp} />
     </Stack.Navigator>
   </NavigationContainer>
