@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, ScrollView, Text, StyleSheet, Image, Pressable } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { View, ScrollView, Text, TextInput, StyleSheet, Image, Pressable } from 'react-native';
+import BalanceIcon from 'react-native-vector-icons/FontAwesome5';
+import Share from 'react-native-vector-icons/EvilIcons';
+import Search from 'react-native-vector-icons/Ionicons';
 
 const Home = ({navigation}) => {
     const imgPerfil = require('../assets/imgPerfilExample.png');
@@ -26,12 +28,12 @@ const Home = ({navigation}) => {
                 
                 <View style={styles.balanceOptions}>
                     <Pressable style={styles.btnBalance1} onPress={() => navigation.navigate('Login')}>
-                        <Icon name="balance-scale-left" size={15} color="#ffffff" />
+                        <BalanceIcon name="balance-scale-left" size={15} color="#ffffff" />
                         <Text style={styles.textBtnBalance}>Depositar</Text>
                     </Pressable>
                     <Pressable style={styles.btnBalance2} onPress={() => navigation.navigate('Login')}>
                         <Text style={styles.textBtnBalance}>Retirar</Text>
-                        <Icon name="balance-scale-right" size={15} color="#ffffff" />
+                        <BalanceIcon name="balance-scale-right" size={15} color="#ffffff" />
                     </Pressable>
                 </View>
 
@@ -39,7 +41,69 @@ const Home = ({navigation}) => {
                     <Text style={styles.textInviteFriends}>Convide um amigo para jogar com você na Bipix worth</Text>
                     <Pressable style={styles.btnInviteFriends}>
                         <Text style={styles.textBtnInviteFriends}>Convidar</Text>
+                        <Share name="share-google" size={20} color="#ffffff" />
                     </Pressable>
+                </View>
+
+                <View style={styles.searchGames}>
+                    <TextInput 
+                        style={styles.searchInput}
+                        placeholder="Ex: Truco"
+                        /* onChangeText={newUser => setLogin(newUser)}
+                        defaultValue={} */
+                        />
+                    <Search name="search" size={20} color="#222222" />
+                </View>
+
+                <View style={styles.gamesMenu}>
+                    <Text style={styles.gamesTitle}>JOGOS BIPIX WORTH</Text>
+                    <View style={styles.modeOptions}>
+                        <Pressable style={styles.btnVsFriends} /* onPress={() => navigation.navigate('Login')} */ >
+                            <Text style={styles.textBtnVsFriends}>Contra amigos</Text>
+                        </Pressable>
+                        <Pressable style={styles.btnAdventure} /* onPress={() => navigation.navigate('Login')} */ >
+                            <Text style={styles.textBtnAdventure}>Modo aventura</Text>
+                        </Pressable>
+                    </View>
+
+                    <View style={styles.gamesBox}>
+                        <View style={styles.gamesItem}>
+                            <Image
+                                style={styles.gamesImage}
+                                source={require('../assets/Dama.png')}
+                            />
+                            <Pressable style={styles.btnPlay} /* onPress={() => navigation.navigate('Login')} */ >
+                                <Text style={styles.textBtnPlay}>Jogar</Text>
+                            </Pressable>
+                        </View>
+                        <View style={styles.gamesItem}>
+                            <Image
+                                style={styles.gamesImage}
+                                source={require('../assets/Baralho.png')}
+                            />
+                            <Pressable style={styles.btnPlay} /* onPress={() => navigation.navigate('Login')} */ >
+                                <Text style={styles.textBtnPlay}>Jogar</Text>
+                            </Pressable>
+                        </View>
+                        <View style={styles.gamesItem}>
+                            <Image
+                                style={styles.gamesImage}
+                                source={require('../assets/Truco.png')}
+                            />
+                            <Pressable style={styles.btnPlay} /* onPress={() => navigation.navigate('Login')} */ >
+                                <Text style={styles.textBtnPlay}>Jogar</Text>
+                            </Pressable>
+                        </View>
+                        <View style={styles.gamesItem}>
+                            <Image
+                                style={styles.gamesImage}
+                                source={require('../assets/Xadrez.png')}
+                            />
+                            <Pressable style={styles.btnPlay} /* onPress={() => navigation.navigate('Login')} */ >
+                                <Text style={styles.textBtnPlay}>Jogar</Text>
+                            </Pressable>
+                        </View>
+                    </View>
                 </View>
             </ScrollView>
         </View>
@@ -56,10 +120,7 @@ const styles = StyleSheet.create({
     homeContent: {
         flexDirection: 'column',
         paddingVertical: 30,
-        borderWidth: 1,
-        borderColor: '#373737',
         paddingHorizontal: 20,
-        borderRadius: 10,
         width: 300,
     },
 
@@ -130,8 +191,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
+        borderLeftWidth: 1,
+        borderColor: '#777777',
         paddingHorizontal: 10,
-        borderRadius: 10,
         flex: 1,
         elevation: 3,
     },
@@ -141,7 +203,6 @@ const styles = StyleSheet.create({
 
     inviteFriends: {
         marginTop: 20,
-        justifyContent: 'center',
         alignItems: 'start',
         gap: 10,
         paddingHorizontal: 15,
@@ -152,29 +213,106 @@ const styles = StyleSheet.create({
     },
     btnInviteFriends: {
         alignItems: 'center',
-        paddingHorizontal: 10,
+        justifyContent: 'center',
         borderRadius: 10,
-        width: 110,
+        width: 'max-content',
+        flexDirection: 'row',
+        gap: 5,
         backgroundColor: '#286ACE',
         elevation: 3,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
     },
     textBtnInviteFriends: {
         color: '#ffffff',
         fontWeight: 'bold',
-        fontSize: 16,
-        
-        padding: 5,
-        justifyContent: 'center',
+        fontSize: 16,   
+        alignSelf: 'center',   
+        justifySelf: 'center',
+    },
+    
+    searchGames: {
+        marginTop: 30,
+        borderColor: '#222222',
+        borderWidth: 3,
+        borderRadius: 17,
+        backgroundColor: '#ffffff',
+        flexDirection: 'row',
+        paddingHorizontal: 5,
+        paddingVertical: 4,
+        alignItems: 'center',
+    },
+    searchInput: {
+        flex: 1,
+        outline: 'none',
     },
 
-
-    button: {
-        alignItems: 'center',
-        paddingHorizontal: 10,
-        borderRadius: 10,
-        width: 110,
+    gamesMenu: {
+        marginTop: 30,
+    },
+    gamesTitle: {
+        color: '#286ACE',
+        fontSize: 24,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    modeOptions: {
+        flexDirection: 'row',
+        marginVertical: 15,
+    },
+    btnVsFriends: {
         backgroundColor: '#286ACE',
-        elevation: 3,
+        borderBottomRightRadius: 0,
+        borderTopRightRadius: 0,
+        borderRadius: 15,
+        alignItems: 'center',
+        flex: 1,
+        padding: 5,
+    },
+    textBtnVsFriends: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+    },
+    btnAdventure: {
+        backgroundColor: '#373737',
+        borderBottomLeftRadius: 0,
+        borderTopLeftRadius: 0,
+        borderRadius: 15,
+        alignItems: 'center',
+        padding: 5,
+        flex: 1,
+    },
+    textBtnAdventure: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+    },
+
+    gamesBox: {
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        flex: 1,
+    },
+    gamesItem: {
+        width: '45%',
+        gap: 10,
+        justifyContent: 'center',
+        marginVertical: 15,
+        marginHorizontal: 5,
+        alignItems: 'center',
+    },
+    btnPlay: {
+        backgroundColor: '#373737',
+        borderRadius: 15,
+        alignItems: 'center',
+        padding: 5,
+        width: '80%',
+    },
+    textBtnPlay: {
+        color: '#ffffff',
+    },
+    gamesImage: {
+        width: 80,
+        height: 80,
     },
 });
 

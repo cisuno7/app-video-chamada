@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 
 const LoseGame = () => {
-    const imgDama = require('../assets/dama.png');
+    const imgDama = require('../assets/Dama.png');
     return(
         <View style={styles.container}>
             <Text style={styles.title}>Dama</Text>

@@ -107,6 +107,7 @@ const SignUp = () => {
                 <Text style={styles.textBtn}>Criar conta</Text>
             </Pressable>
             </View>
+
         </View>
     </View>
 );
