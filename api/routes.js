@@ -1,10 +1,10 @@
 const express = require('express');
-const pool = require('../Model/db');
-const AppContainer = require('../App');
-const router = express();
+const pool = require('./src/Database/db')
+const route = express();
+
 
 // Rota para listar todos os usuários
-router.get('/users', (req, res) => {
+route.get('/users', (req, res) => {
     pool.query('SELECT * FROM users', (error, results) => {
         if (error) {
             throw error;
@@ -14,7 +14,7 @@ router.get('/users', (req, res) => {
 });
 
 // Rota para adicionar um novo usuário
-router.post('/users', (req, res) => {
+route.post('/users', (req, res) => {
     const { username, password,email } = req.body;
     pool.query('INSERT INTO users (username, email, password) VALUES ($1, $2,$3)', [username, password,email], (error, result) => {
         if (error) {
@@ -24,7 +24,7 @@ router.post('/users', (req, res) => {
     });
 });
 // Rota para autenticar um usuário
-router.post('/auth', (req, res) => {
+route.post('/auth', (req, res) => {
     const { email, password } = req.body;
     pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password], (error, results) => {
         if (error) {
@@ -40,5 +40,4 @@ router.post('/auth', (req, res) => {
     });
 });
 
-router.use('/app', AppContainer);
-module.exports = router;
+module.exports = route;

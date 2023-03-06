@@ -32,10 +32,12 @@
     "react-native-web": "~0.18.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
     "@types/node": "^18.14.2",
     "expo-module-scripts": "^3.0.7",
     "nodemon": "^2.0.20"
   },
-  "private": true
+  "private": true,
+  "type": "module"
 }
