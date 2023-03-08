@@ -1,12 +1,14 @@
-const express = require('express');
-const router = require('../api/routes');
+import express from 'express';
 
 const app = express();
 app.use(express.json()); 
-app.use(router)
 
-const port = 3000;
+
+app.get('/', () => {
+    console.log("oi")
+})
+
+const port = 3001;
 app.listen(port, () => {
     console.log(`API rodando na porta ${port}.`);
 });
-module.exports = app;
