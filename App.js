@@ -28,8 +28,8 @@ const AppContainer = () => {
           fontWeight: 'bold',
         },
       }}>
-      <Stack.Screen name="ChooseBet" component={ChooseBet} />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="ChooseBet" component={ChooseBet} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="LoseGame" component={LoseGame} />
